@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('bluebg.jpg') center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .questionnaire-container {
+            text-align: left; /* Make questions left-aligned */
+            max-width: 500px; /* Adjust the max-width as needed */
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #333;
+            font-weight: bold; /* Make the font bold */
+            margin-bottom: 20px; /* Add margin after the heading */
+            background-color: skyblue; /* Set the background color of the heading */
+            padding: 10px; /* Add padding to the heading */
+            border-radius: 10px; /* Add border-radius to give it a cuboid shape */
+        }
+
+        .question-set {
+            margin-bottom: 20px; /* Add margin after each set of question and options */
+        }
+
+        label {
+            font-weight: bold; /* Make the font of the questions bold */
+            margin-bottom: 15px; /* Add some bottom margin between questions and options */
+            display: block; /* Ensure each label is on a new line */
+        }
+
+        .radio-group {
+            margin-bottom: 10px; /* Add margin between the "Choose an option" text and radio buttons */
+        }
+
+        input[type="radio"] {
+            margin-bottom: 8px; /* Add space between radio buttons */
+        }
+
+        input[type="submit"] {
+            margin-top: 15px; /* Add space above the buttons */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: black; /* Change button background color to black */
+            color: white; /* Change button text color to white */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Changed style for "Choose an option:" text */
+        .choose-option {
+            color: #FF5733; /* Changed to a different color */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="questionnaire-container">
+        <h1>Level 1: Basic Emotional State</h1>
+
+        <form id="formSurvey1" action="survey2.html">
+
+            <div class="question-set">
+                <label for="q1">Q1: Generally, how often do you feel sad in a Day ?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q1" value="0" required> 0
+                    <input type="radio" name="q1" value="1" required> 1
+                    <input type="radio" name="q1" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q2">Q2: Is it tough to feel happy in good moments?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q2" value="0" required> 0
+                    <input type="radio" name="q2" value="1" required> 1
+                    <input type="radio" name="q2" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q3">Q3: Do you feel stressed often?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q3" value="0" required> 0
+                    <input type="radio" name="q3" value="1" required> 1
+                    <input type="radio" name="q3" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q4">Q4: Are you sleeping well at night?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q4" value="0" required> 0
+                    <input type="radio" name="q4" value="1" required> 1
+                    <input type="radio" name="q4" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q5">Q5: Are you eating regularly and as usual?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q5" value="0" required> 0
+                    <input type="radio" name="q5" value="1" required> 1
+                    <input type="radio" name="q5" value="2" required> 2
+                </div>
+            </div>
+
+            <input type="submit" value="Save and Continue">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formSurvey1').addEventListener('submit', function(event) {
+            // Calculate and store scores
+            const formData = new FormData(event.target);
+            let totalScore = 0;
+
+            formData.forEach((value, key) => {
+                totalScore += parseInt(value);
+            });
+
+            // Store the scores in local storage
+            localStorage.setItem('survey1Values', JSON.stringify({ totalScore }));
+
+            // Continue to the next page
+            window.location.href = 'survey2.html';
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
