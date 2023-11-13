@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 5</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('bluebg.jpg') center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .page-container {
+            text-align: left;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background-color: skyblue;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .question-set {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .radio-group {
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"] {
+            margin-bottom: 8px;
+        }
+
+        input[type="submit"] {
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Changed style for "Choose an option:" text */
+        .choose-option {
+            color: #FF5733; /* Changed to a different color */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <h1>Level 5: Seeking Help</h1>
+
+        <form id="formPage5" onsubmit="validateAndSubmit(); return false;">
+
+            <div class="question-set">
+                <label for="q21">Q21: Have you talked to a friend or family member about your feelings?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q21" value="0" required> 0
+                    <input type="radio" name="q21" value="1" required> 1
+                    <input type="radio" name="q21" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q22">Q22: Are you aware of professional help, like therapists or counselors?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q22" value="0" required> 0
+                    <input type="radio" name="q22" value="1" required> 1
+                    <input type="radio" name="q22" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q23">Q23: Would you consider reaching out to a mental health professional?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q23" value="0" required> 0
+                    <input type="radio" name="q23" value="1" required> 1
+                    <input type="radio" name="q23" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q24">Q24: Do you feel that your emotional state is impacting your daily life?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q24" value="0" required> 0
+                    <input type="radio" name="q24" value="1" required> 1
+                    <input type="radio" name="q24" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q25">Q25: Are you open to seeking support and treatment if needed?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q25" value="0" required> 0
+                    <input type="radio" name="q25" value="1" required> 1
+                    <input type="radio" name="q25" value="2" required> 2
+                </div>
+            </div>
+
+            <input type="submit" value="Save and Continue">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formPage5').addEventListener('submit', function(event) {
+            // Calculate and store scores
+            const formData = new FormData(event.target);
+            let totalScore = 0;
+
+            formData.forEach((value, key) => {
+                totalScore += parseInt(value);
+            });
+
+            // Retrieve scores from the previous pages if needed
+            const survey4Page4Values = JSON.parse(localStorage.getItem('survey4Page4Values')) || {};
+            totalScore += survey4Page4Values.totalScore || 0;
+
+            // Store the scores in local storage
+            localStorage.setItem('page5Values', JSON.stringify({ totalScore }));
+
+            // Continue to the next page or final result page
+            // Modify the URL accordingly
+            window.location.href = 'combined_result.html';
+            event.preventDefault();
+        });
+    </script>
+
+</body>
+</html>

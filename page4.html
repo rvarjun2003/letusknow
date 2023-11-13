@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 4</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('bluebg.jpg') center center fixed;
+            background-size: cover;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .questionnaire-container {
+            text-align: left;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background-color: skyblue;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .question-set {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .radio-group {
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"] {
+            margin-bottom: 8px;
+        }
+
+        input[type="submit"] {
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Changed style for "Choose an option:" text */
+        .choose-option {
+            color: #FF5733; /* Changed to a different color */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="questionnaire-container">
+        <h1>Level 4: Negative Thoughts</h1>
+
+        <form id="formPage4" action="page5.html">
+
+            <div class="question-set">
+                <label for="q16">Q16: Do you often think negatively about yourself?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q16" value="0" required> 0
+                    <input type="radio" name="q16" value="1" required> 1
+                    <input type="radio" name="q16" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q17">Q17: Are you self-critical or overly self-conscious?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q17" value="0" required> 0
+                    <input type="radio" name="q17" value="1" required> 1
+                    <input type="radio" name="q17" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q18">Q18: Do you have thoughts of hopelessness or worthlessness?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q18" value="0" required> 0
+                    <input type="radio" name="q18" value="1" required> 1
+                    <input type="radio" name="q18" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q19">Q19: Are you dwelling on past mistakes or regrets?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q19" value="0" required> 0
+                    <input type="radio" name="q19" value="1" required> 1
+                    <input type="radio" name="q19" value="2" required> 2
+                </div>
+            </div>
+
+            <div class="question-set">
+                <label for="q20">Q20: Have you ever thought about harming yourself?</label>
+                <div class="radio-group">
+                    <span class="choose-option">Choose an option:</span>
+                    <input type="radio" name="q20" value="0" required> 0
+                    <input type="radio" name="q20" value="1" required> 1
+                    <input type="radio" name="q20" value="2" required> 2
+                </div>
+            </div>
+
+            <input type="submit" value="Save and Continue">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formPage4').addEventListener('submit', function(event) {
+            // Calculate and store scores
+            const formData = new FormData(event.target);
+            let totalScore = 0;
+
+            formData.forEach((value, key) => {
+                totalScore += parseInt(value);
+            });
+
+            // Retrieve scores from the previous pages if needed
+            const survey3Page3Values = JSON.parse(localStorage.getItem('survey3Page3Values')) || {};
+            totalScore += survey3Page3Values.totalScore || 0;
+
+            // Store the scores in local storage
+            localStorage.setItem('page4Values', JSON.stringify({ totalScore }));
+
+            // Continue to the next page or final result page
+            // Modify the URL accordingly
+            window.location.href = 'page5.html';
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>
