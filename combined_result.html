@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Result</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('bluebg.jpg') center center fixed;
+            background-size: cover;
+        }
+
+        .result-container {
+            text-align: center;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(135, 206, 250, 0.2); /* Adjusted intensity of sky blue color */
+        }
+
+        h1 {
+            color: #333;
+            font-size: 1.5em; /* Increased heading size */
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+
+        p {
+            margin: 10px 0;
+            font-weight: bold; /* Added bold style */
+        }
+
+        .congrats {
+            color: green;
+            font-weight: bold; /* Added bold style */
+        }
+
+        .depressed {
+            color: orange;
+            font-weight: bold; /* Added bold style */
+        }
+
+        .highly-depressed {
+            color: red;
+            font-weight: bold; /* Added bold style */
+        }
+
+        .thank-you {
+            color: purple;
+            font-weight: bold; /* Added bold style */
+        }
+
+        /* Added styling for percentage */
+        .percentage {
+            font-size: 1.2em;
+            margin-top: 10px;
+            font-weight: bold; /* Added bold style */
+        }
+
+        /* Added styling for tips */
+        .tips {
+            text-align: left;
+            margin-top: 20px;
+            font-style: italic; /* Added slanting style */
+            padding: 10px; /* Added padding */
+            border: 2px solid #333; /* Added border */
+            border-radius: 10px; /* Added border radius */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="result-container">
+        <h1><span style="color: blue;">Personalized Depression Evaluation</span></h1>
+
+        <script>
+            // Retrieve values from local storage
+            const survey1Values = JSON.parse(localStorage.getItem('survey1Values')) || {};
+            const survey2Values = JSON.parse(localStorage.getItem('survey2Values')) || {};
+            const page3Values = JSON.parse(localStorage.getItem('page3Values')) || {};
+            const page4Values = JSON.parse(localStorage.getItem('page4Values')) || {};
+            const page5Values = JSON.parse(localStorage.getItem('page5Values')) || {};
+
+            // Display the total score for each page
+            // document.write(`<p>Total Score for Page 1: ${survey1Values.totalScore}</p>`);
+            
+            // Display Survey 2 Result - Survey 1
+            const survey2ResultMinusSurvey1 = survey2Values.totalScore - survey1Values.totalScore;
+            // document.write(`<p>Total Score for Page 2: ${survey2ResultMinusSurvey1}</p>`);
+            
+            // Display Page 3 Result - Survey 2
+            const page3ResultMinusSurvey2 = page3Values.totalScore - survey2Values.totalScore;
+            // document.write(`<p>Total Score for Page 3: ${page3ResultMinusSurvey2}</p>`);
+
+            // Include Survey 2 Result - Survey 1 and Page 3 Result - Survey 2 in overall total score
+            const overallTotalScore = survey1Values.totalScore + survey2ResultMinusSurvey1 + page3ResultMinusSurvey2 + page4Values.totalScore + page5Values.totalScore;
+            
+            // document.write(`<p>Total Score for Page 4: ${page4Values.totalScore}</p>`);
+            // document.write(`<p>Total Score for Page 5: ${page5Values.totalScore}</p>`);
+            
+            const percentage = (overallTotalScore / 50) * 100; // Corrected the variable name
+
+            // Display the overall total score
+            document.write(`<p><strong>Overall Total Score:</strong> ${overallTotalScore}/50</p>`);
+
+            // Display percentage with added styling
+            document.write(`<p class="percentage"><strong>Percentage:</strong> ${percentage.toFixed(2)}%</p>`);
+
+            // Display additional messages based on percentage
+            if (percentage <= 50) {
+                document.write(`<p class="congrats">Congratulations! You're a stress-free person.</p>`);
+            } else if (percentage <= 85) {
+                document.write(`<p class="depressed">You are a bit depressed. Take care of yourself.</p>`);
+            } else {
+                document.write(`<p class="highly-depressed">You're highly depressed. Please consult a doctor!</p>`);
+            }
+
+            // Display thank you message
+            document.write(`<p class="thank-you">Thank you for taking the test!</p>`);
+
+            // Display tips based on depression level
+            document.write('<div class="tips">');
+            if (percentage <= 50) {
+                document.write('<h2>Tips for Low Depression:</h2>');
+                document.write('<ul>');
+                document.write('<li>Maintain social connections and reach out to friends or family.</li>');
+                document.write('<li>Ensure you get adequate sleep each night.</li>');
+                document.write('<li>Engage in activities and hobbies you enjoy.</li>');
+                document.write('<li>Eat a balanced diet to support overall well-being.</li>');
+                document.write('<li>Do meditation regularly.</li>');
+                document.write('</ul>');
+            } else if (percentage <= 85) {
+                document.write('<h2>Tips for Moderate Depression:</h2>');
+                document.write('<ul>');
+                document.write('<li>Set achievable goals to stay motivated and focused.</li>');
+                document.write('<li>Practice yoga and breathing exercises daily.</li>');
+                document.write('<li>Seek support from a mental health professional or therapist.</li>');
+                document.write('<li>Create a routine to better manage your time and responsibilities.</li>');
+                document.write('<li>Limit screen time and prioritize in-person interactions.</li>');
+                document.write('</ul>');
+            } else {
+                document.write('<h2>Tips for High Depression:</h2>');
+                document.write('<ul>');
+                document.write('<li>Urgently seek help from a mental health expert or counselor.</li>');
+                document.write('<li>Open up to a trusted friend or family member about your struggles.</li>');
+                document.write('<li>Prioritize self-care, including basic self-maintenance and hygiene.</li>');
+                document.write('<li>Do physical exercises, meditation, and go for a walk in the mornings to ensure a fresh mindset every day.</li>');
+                document.write('<li>Develop a crisis plan and keep emergency contact numbers readily available for severe distress.</li>');
+                document.write('</ul>');
+            }
+            document.write('</div>');
+
+        </script>
+
+    </div>
+
+</body>
+</html>
