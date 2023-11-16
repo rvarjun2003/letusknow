@@ -25,33 +25,29 @@
             border-radius: 10px;
             position: relative;
             z-index: 1;
+            overflow: auto; /* Added overflow property */
+        }
+
+        .question-set {
+            margin-bottom: 20px;
+            max-height: 150px; /* Set a maximum height for the question set */
+            overflow-y: auto; /* Added overflow property */
+        }
+
+        h1, label, .choose-option, input[type="submit"] {
+            font-weight: bold;
         }
 
         h1 {
             color: #333;
-            font-weight: bold;
             margin-bottom: 20px;
             background-color: skyblue;
             padding: 10px;
             border-radius: 10px;
         }
 
-        .question-set {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .radio-group {
-            margin-bottom: 10px;
-        }
-
-        input[type="radio"] {
-            margin-bottom: 8px;
+        .choose-option {
+            color: #FF5733; /* Changed to a different color */
         }
 
         input[type="submit"] {
@@ -59,7 +55,7 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            background-color: black;
+            background-color: #4CAF50; /* Unique color for the submit button */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -67,24 +63,20 @@
             cursor: pointer;
         }
 
-        /* Changed style for "Choose an option:" text */
-        .choose-option {
-            color: #FF5733; /* Changed to a different color */
-            font-weight: bold;
-        }
+        /* Rest of your styles remain unchanged */
     </style>
 </head>
 <body>
 
     <div class="page-container">
-        <h1>Level 5: Seeking Help</h1>
+        <h1>Level 5: Cognitive Functioning</h1>
 
         <form id="formPage5" onsubmit="validateAndSubmit(); return false;">
 
             <div class="question-set">
-                <label for="q21">Q21: Have you talked to a friend or family member about your feelings?</label>
+                <label for="q21"><strong>Q21:</strong> How often do you find yourself struggling with concentration and focus on daily tasks?</label>
                 <div class="radio-group">
-                    <span class="choose-option">Choose an option:</span>
+                    <span class="choose-option"><strong>Choose an option:</strong></span>
                     <input type="radio" name="q21" value="0" required> 0
                     <input type="radio" name="q21" value="1" required> 1
                     <input type="radio" name="q21" value="2" required> 2
@@ -92,9 +84,9 @@
             </div>
 
             <div class="question-set">
-                <label for="q22">Q22: Are you aware of professional help, like therapists or counselors?</label>
+                <label for="q22"><strong>Q22:</strong> Have you noticed changes in your ability to make decisions or solve problems efficiently?</label>
                 <div class="radio-group">
-                    <span class="choose-option">Choose an option:</span>
+                    <span class="choose-option"><strong>Choose an option:</strong></span>
                     <input type="radio" name="q22" value="0" required> 0
                     <input type="radio" name="q22" value="1" required> 1
                     <input type="radio" name="q22" value="2" required> 2
@@ -102,9 +94,9 @@
             </div>
 
             <div class="question-set">
-                <label for="q23">Q23: Would you consider reaching out to a mental health professional?</label>
+                <label for="q23"><strong>Q23:</strong> Are there instances when you experience memory difficulties or forgetfulness?</label>
                 <div class="radio-group">
-                    <span class="choose-option">Choose an option:</span>
+                    <span class="choose-option"><strong>Choose an option:</strong></span>
                     <input type="radio" name="q23" value="0" required> 0
                     <input type="radio" name="q23" value="1" required> 1
                     <input type="radio" name="q23" value="2" required> 2
@@ -112,9 +104,9 @@
             </div>
 
             <div class="question-set">
-                <label for="q24">Q24: Do you feel that your emotional state is impacting your daily life?</label>
+                <label for="q24"><strong>Q24:</strong> Do you feel that your emotional state is impacting your daily life?</label>
                 <div class="radio-group">
-                    <span class="choose-option">Choose an option:</span>
+                    <span class="choose-option"><strong>Choose an option:</strong></span>
                     <input type="radio" name="q24" value="0" required> 0
                     <input type="radio" name="q24" value="1" required> 1
                     <input type="radio" name="q24" value="2" required> 2
@@ -122,14 +114,16 @@
             </div>
 
             <div class="question-set">
-                <label for="q25">Q25: Are you open to seeking support and treatment if needed?</label>
+                <label for="q25"><strong>Q25:</strong> How frequently do you engage in overthinking or rumination about past events or future concerns?</label>
                 <div class="radio-group">
-                    <span class="choose-option">Choose an option:</span>
+                    <span class="choose-option"><strong>Choose an option:</strong></span>
                     <input type="radio" name="q25" value="0" required> 0
                     <input type="radio" name="q25" value="1" required> 1
                     <input type="radio" name="q25" value="2" required> 2
                 </div>
             </div>
+
+            <!-- Add more questions as needed -->
 
             <input type="submit" value="Submit">
         </form>
